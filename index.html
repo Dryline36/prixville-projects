@@ -14,7 +14,718 @@
   src: url() format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'Rokkitt';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'Rokkitt';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+@font-face {
+  font-family: 'Rokkitt';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+</style>
+<style>
+  :root {
+    --bg: #090909;
+    --surface: #131313;
+    --surface-2: #1a1a1a;
+    --cream: #f6f0e6;
+    --muted: #a8a8a8;
+    --white: #fff;
+    --tangerine: #ff7347;
+    --live: #39ff6a;
+    --soon: #3dbaff;
+    --line: #232323;
+    --banner: #ff7347;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--cream); }
+  body {
+    font-family: "Crimson Text", Georgia, serif;
+    min-height: 100%;
+    background:
+      radial-gradient(900px 420px at 10% -10%, rgba(255,115,71,.16), transparent 60%),
+      radial-gradient(700px 380px at 110% 20%, rgba(61,186,255,.08), transparent 55%),
+      var(--bg);
+  }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+
+  .ticker {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    background: var(--banner); color: #111; min-height: 42px; padding: 8px 16px;
+    font-family: "Rokkitt", Rockwell, serif; font-weight: 700; letter-spacing: .01em;
+  }
+  .ticker .dot {
+    width: 28px; height: 28px; border-radius: 8px; background: #111; color: var(--cream);
+    display: grid; place-items: center; font-size: 14px;
+  }
+  .ticker .view {
+    background: #111; color: var(--cream); border: 0; border-radius: 999px;
+    padding: 6px 12px; font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    box-shadow: 2px 2px 0 #5a2414;
+  }
+
+  header.nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px 8px; gap: 16px;
+  }
+  .brand {
+    font-family: "Rokkitt", Rockwell, serif; font-weight: 900; font-size: 28px;
+    letter-spacing: -.03em; margin: 0;
+  }
+  .brand span { color: var(--tangerine); }
+  nav.links { display: flex; gap: 8px; flex-wrap: wrap; }
+  nav.links button {
+    background: transparent; border: 0; color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 8px 10px;
+  }
+  nav.links button[aria-pressed="true"] {
+    color: var(--cream); box-shadow: inset 0 -2px 0 var(--tangerine);
+  }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 12px 20px 48px; }
+  .lede {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+    margin: 8px 0 18px;
+  }
+  .lede h2 {
+    font-family: "Rokkitt", Rockwell, serif; font-weight: 800; font-size: clamp(40px, 6vw, 64px);
+    margin: 0; letter-spacing: -.03em; line-height: .9;
+  }
+  .lede h2 em { font-style: normal; color: var(--tangerine); }
+  .lede p { margin: 8px 0 0; color: var(--muted); font-style: italic; font-size: 18px; max-width: 420px; }
+  .note {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+
+  .stage { display: grid; grid-template-columns: 1fr; justify-items: center; }
+  .stack {
+    position: relative; width: min(420px, 94vw); height: 740px; margin-top: 8px;
+  }
+  .card {
+    position: absolute; inset: 0; background: var(--surface);
+    border: 2px solid var(--cream);
+    border-radius: 28px 16px 30px 18px;
+    box-shadow: 8px 8px 0 var(--cream);
+    overflow: hidden; display: flex; flex-direction: column;
+    transform-origin: center bottom; touch-action: none; user-select: none;
+  }
+  .card.back-2 { transform: translateY(-22px) scale(.92); opacity: .45; }
+  .card.back-1 { transform: translateY(-12px) scale(.96); opacity: .75; }
+  .art { height: 46%; position: relative; overflow: hidden; flex: none; }
+  .art svg { width: 100%; height: 100%; display: block; }
+  .chip {
+    position: absolute; top: 14px; left: 14px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .14em; font-weight: 700;
+    padding: 5px 8px; border-radius: 999px; color: #081108;
+  }
+  .chip.live { background: var(--live); }
+  .chip.upcoming { background: var(--soon); color: #041018; }
+  .body { padding: 16px 18px 14px; display: flex; flex-direction: column; gap: 10px; flex: 1; overflow: hidden; touch-action: none; }
+  .body h3 {
+    margin: 0; font-family: "Rokkitt", Rockwell, serif; font-weight: 800;
+    font-size: 34px; letter-spacing: -.03em; line-height: .95;
+  }
+  .meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px;
+    color: var(--muted); letter-spacing: .02em; line-height: 1.45;
+  }
+  .blurb { margin: 4px 0 0; font-size: 17px; color: var(--cream); }
+
+  .wallet {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: .03em; line-height: 1.35;
+    padding: 8px 10px; border-radius: 12px; border: 2px solid #111;
+    color: #111;
+  }
+  .wallet b { font-weight: 700; letter-spacing: .12em; }
+  .wallet.green { background: #39ff6a; }
+  .wallet.yellow { background: #e2c044; }
+  .wallet.red { background: #ff2d2d; color: #fff; }
+  .card.front.risk-green { box-shadow: 8px 8px 0 #39ff6a; }
+  .card.front.risk-yellow { box-shadow: 8px 8px 0 #e2c044; }
+  .card.front.risk-red { box-shadow: 8px 8px 0 #ff2d2d; }
+  .socials { display: flex; flex-wrap: wrap; gap: 8px; }
+  .socials a {
+    color: #111; background: var(--cream); text-decoration: none;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 6px 8px; border-radius: 999px; border: 2px solid #111;
+  }
+
+
+  .tray {
+    margin-top: 18px; background: var(--cream); color: #111;
+    border-radius: 999px; display: flex; gap: 6px; padding: 8px;
+    box-shadow: 4px 4px 0 #3a3a3a;
+  }
+  .tray button {
+    width: 52px; height: 52px; border-radius: 50%; border: 2px solid #111; background: transparent;
+    font-size: 18px;
+  }
+  .tray button.primary { background: var(--tangerine); box-shadow: 2px 2px 0 #111; }
+  .tray button.save[aria-pressed="true"] { background: #111; color: var(--cream); }
+
+  .empty {
+    width: min(380px, 92vw); min-height: 280px; border: 2px dashed var(--line);
+    border-radius: 24px; display: grid; place-items: center; text-align: center; padding: 24px;
+  }
+  .empty button {
+    margin-top: 12px; background: var(--tangerine); color: #111; border: 0;
+    border-radius: 999px; padding: 10px 16px; font-family: "Rokkitt", Rockwell, serif;
+    font-weight: 800; box-shadow: 3px 3px 0 #111;
+  }
+
+  .board { display: none; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .board.show { display: grid; }
+  .stage.hide { display: none; }
+  .col h4 {
+    margin: 0 0 12px; font-family: "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: .16em; font-size: 12px; color: var(--muted); font-weight: 500;
+  }
+  .grid { display: grid; gap: 14px; }
+  .tile {
+    background: var(--surface); border: 2px solid var(--cream);
+    border-radius: 18px 10px 20px 12px; box-shadow: 5px 5px 0 var(--cream); overflow: hidden;
+  }
+  .tile .art { height: 160px; }
+  .tile .body { padding: 12px 14px 14px; }
+  .tile h3 { font-size: 26px; }
+  @media (max-width: 800px) {
+    .board.show { grid-template-columns: 1fr; }
+    header.nav { flex-direction: column; align-items: flex-start; }
+    body { overflow-x: hidden; }
+    .ticker { font-size: 15px; gap: 8px; text-align: center; }
+    .ticker span:nth-child(2) { line-height: 1.1; }
+    header.nav { padding: 10px 14px 0; }
+    nav.links { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+    .lede { display: none; }
+    main { padding: 8px 14px 28px; }
+    .stack { width: 100%; height: calc(100dvh - 168px); min-height: 640px; }
+    .art { height: 34%; }
+    .body { padding: 18px 18px 20px; gap: 12px; }
+    .body h3 { font-size: 32px; }
+    .wallet, .counts, .blurb { line-height: 1.45; }
+    .tray button { width: 48px; height: 48px; }
+  }
+
+  .counts {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--muted); letter-spacing: .02em;
+  }
+  .burst {
+    position: fixed; left: 50%; top: 40%; z-index: 80;
+    pointer-events: none; line-height: 1;
+    animation: burst .7s ease forwards;
+  }
+  .burst.dislike {
+    font-family: "Rokkitt", Rockwell, serif; font-weight: 900;
+    font-size: min(240px, 62vw); color: #ff2d2d;
+    text-shadow: 8px 8px 0 #111;
+  }
+  .burst.like { font-size: min(160px, 42vw); }
+
+  .vote-note {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: .02em; line-height: 1.4;
+    color: #ffd0c6; background: #2a1210; border: 2px solid #ff2d2d;
+    border-radius: 12px; padding: 8px 10px;
+  }
+  .unsaved {
+    position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+    z-index: 90; max-width: min(440px, 92vw);
+    background: #111; color: var(--cream); border: 2px solid var(--tangerine);
+    box-shadow: 4px 4px 0 #3a3a3a; padding: 10px 14px; border-radius: 14px;
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    line-height: 1.4;
+  }
+  @keyframes burst {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(.35) rotate(-10deg); }
+    25% { opacity: 1; transform: translate(-50%, -60%) scale(1.12) rotate(6deg); }
+    100% { opacity: 0; transform: translate(-50%, -110%) scale(1.35) rotate(0deg); }
+  }
 </style>
 </head>
-<body>placeholder</body>
+<body>
+  <div id="unsaved" class="unsaved" hidden></div>
+  <div class="ticker">
+    <span class="dot">R</span>
+    <span>The Richards free mint coming soon</span>
+    <button class="view" id="jumpRichards" type="button">View →</button>
+  </div>
+  <header class="nav">
+    <h1 class="brand">PRIX<span>.</span></h1>
+    <nav class="links">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+      <button type="button" data-filter="live" aria-pressed="false">Live</button>
+      <button type="button" data-filter="saved" aria-pressed="false">Saved</button>
+      <button type="button" id="layout" aria-pressed="false">Board</button>
+    </nav>
+  </header>
+  <main>
+    <div class="lede">
+      <div>
+        <h2>Upcoming <em>&</em> live.</h2>
+        <p>Swipe the stack the way Darted does, in the Prixville print.</p>
+      </div>
+      <div class="note">Wallet check, Oct 3 2026. Yellow means not enough to call.</div>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="stack" id="stack"></div>
+      <div class="tray" id="tray">
+        <button type="button" id="pass" title="Dislike">✕</button>
+        <button type="button" id="info" title="Details">▤</button>
+        <button type="button" class="save" id="save" title="Like">♥</button>
+        <button type="button" class="primary" id="next" title="Next">→</button>
+      </div>
+    </div>
+
+    <div class="board" id="board"></div>
+  </main>
+<script>
+const PROJECTS = [
+  { founder: "Not named", followers: "54 on @ChronoLab_io", image: "", socials: [{label:"X", href:"https://x.com/ChronoLab_io"},{label:"Site", href:"https://chronolabio.xyz"}], id: "chronolab", name: "ChronoLab II", status: "upcoming", chain: "Ethereum", supply: "222", price: "0.008 ETH", when: "Oct 6, 2026", blurb: "Public drop through Oct 13. Genesis holders mint Oct 5 at 0.004 ETH.", kind: "oracle", colors: ["#1a1408","#f6f0e6","#ff7347"], wallet: "0xf69d454621D9c3247cc7AAD60d10A7eAe5ABa69E", walletNote: "Payout wallet has no scam label. A few months old, so not called clean.", risk: "yellow" },
+  { founder: "MDV (@mdv_btc)", followers: "11,405", image: "", socials: [{label:"X", href:"https://x.com/mdv_btc"},{label:"Site", href:"https://accretion.art/"},{label:"Allowlist", href:"https://accretion.art/accretion/wl"}], id: "accretion", name: "ACCRETION", status: "upcoming", chain: "Ethereum", supply: "3,333", price: "0.003 ETH", when: "Oct 8, 2026", blurb: "3D worlds on Ethereum, drawn by code inscribed on Bitcoin.", kind: "cage", colors: ["#10202a","#3dbaff","#f6f0e6"], wallet: "", walletNote: "No payout wallet published. Mint is described as OpenSea SeaDrop.", risk: "yellow" },
+  { founder: "Not named", followers: "5 on @TheHoodiens", image: "", socials: [{label:"X", href:"https://x.com/thehoodiens"},{label:"Site", href:"https://hoodiens.space/"}], id: "hoodiens", name: "The Hoodiens", status: "upcoming", chain: "Base", supply: "888", price: "Free", when: "Oct 14, 2026", blurb: "Pixel characters on Base. Public price on-chain is 0.", kind: "vest", colors: ["#141414","#ff7347","#f6f0e6"], wallet: "0x7A3729D0129E38881A9E9b7EDd22eCbf81A95367", walletNote: "Configured payout has no scam label. Not a known project treasury.", risk: "yellow" },
+  { founder: "Monx2", followers: "1,420 \u00b7 project 847", image: "", socials: [{label:"X", href:"https://x.com/theteddylondon"},{label:"Artist", href:"https://x.com/monx2"},{label:"Site", href:"http://teddylondon.xyz/"},{label:"Discord", href:"https://discord.gg/CjuBj72BJ"}], id: "teddy", name: "Teddy London", status: "upcoming", chain: "Base", supply: "1,977", price: "Not published", when: "Oct 10, 2026", blurb: "The Crew, second chapter of Teddy London. Price is not on the official site.", kind: "crown", colors: ["#2a1210","#c9a227","#f6f0e6"], wallet: "", walletNote: "No payout wallet or contract published.", risk: "yellow" },
+  { founder: "magicburp", followers: "12,370 \u00b7 project 7,129", image: "", socials: [{label:"X", href:"https://x.com/TheMotifArt"},{label:"Artist", href:"https://x.com/magicburp"},{label:"Site", href:"https://themotif.art/"},{label:"Mint", href:"https://themotif.art/mint"}], id: "motif", name: "MOTIF", status: "upcoming", chain: "Ethereum", supply: "2,048", price: "Not published", when: "Oct 20, 2026", blurb: "Contract-drawn pieces. Price is supposed to be posted Oct 7. The site still has some past-tense lines.", kind: "ape", colors: ["#160818","#b388ff","#f6f0e6"], wallet: "", walletNote: "Contract address not posted yet.", risk: "yellow" },
+  { founder: "Not published", followers: "Not published", image: "", socials: [{label:"Site", href:"https://failedprezzies.com/"}], id: "prezzies", name: "Failed Prezzies", status: "upcoming", chain: "Base", supply: "10,000", price: "$20 to $40", when: "Late Oct 2026", blurb: "Marmalade Edition. 500 reserved, public mint on a rising curve.", kind: "rat", colors: ["#2b2118","#e7d7c1","#ff7347"], wallet: "", walletNote: "No payout wallet published.", risk: "yellow" },
+  { founder: "Quigley.eth", followers: "54,959 \u00b7 Helixa 1,797", image: "", socials: [{label:"Founder", href:"https://x.com/quigleynft"},{label:"Site", href:"https://helixa.xyz/loopers/"},{label:"OpenSea", href:"https://opensea.io/collection/loopers-639312714"},{label:"Telegram", href:"https://t.me/theloopers"}], id: "loopers", name: "Loopers", status: "live", chain: "Base", supply: "7,777", price: "Sold out", when: "Through Oct 6, 2026", blurb: "On-chain supply is already 7,777. One public mint on Sep 18 paid 0.037 ETH for 10.", kind: "bird", colors: ["#10202a","#39ff6a","#d9d3c7"], wallet: "0x709D8d528D2c0C8A408107E74b38a01Fa14e44aE", walletNote: "Owner wallet is about three weeks old and unlabeled. No scam posts found.", risk: "yellow" }
+];
+
+const saved = new Set();
+const stats = {};
+PROJECTS.forEach(p => { stats[p.id] = { views: 0, likes: 0, dislikes: 0 }; });
+let filter = "all";
+let order = PROJECTS.map(p => p.id);
+let lastViewed = null;
+function short(a) { return a.slice(0, 6) + "\u2026" + a.slice(-4); }
+function fmt(n) { return n.toLocaleString("en-US"); }
+
+let audioCtx = null;
+function audio() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!audioCtx) audioCtx = new AC();
+  if (audioCtx.state === "suspended") audioCtx.resume();
+  return audioCtx;
+}
+function tone(ctx, type, f0, f1, dur, vol) {
+  const o = ctx.createOscillator();
+  const g = ctx.createGain();
+  o.type = type;
+  o.frequency.setValueAtTime(f0, ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(Math.max(40, f1), ctx.currentTime + dur);
+  g.gain.setValueAtTime(vol, ctx.currentTime);
+  g.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + dur);
+  o.connect(g); g.connect(ctx.destination);
+  o.start(); o.stop(ctx.currentTime + dur + 0.02);
+}
+function buzzer() {
+  const ctx = audio();
+  tone(ctx, "square", 180, 110, 0.55, 0.45);
+  tone(ctx, "sawtooth", 90, 70, 0.55, 0.35);
+}
+function squish() {
+  const ctx = audio();
+  tone(ctx, "sine", 640, 90, 0.28, 0.55);
+  tone(ctx, "triangle", 320, 60, 0.2, 0.35);
+}
+document.addEventListener("pointerdown", () => { audio(); }, { once: true });
+
+function burst(kind) {
+  const el = document.createElement("div");
+  el.className = "burst " + kind;
+  el.textContent = kind === "like" ? "\ud83d\udca6" : "\u2715";
+  document.body.appendChild(el);
+  if (kind === "like") { squish(); if (navigator.vibrate) navigator.vibrate([40, 30, 40, 30, 140]); }
+  else buzzer();
+  setTimeout(() => el.remove(), 700);
+}
+let drag = null;
+
+function visible() {
+  return order
+    .map(id => PROJECTS.find(p => p.id === id))
+    .filter(p => {
+      if (filter === "saved") return saved.has(p.id);
+      if (filter === "all") return true;
+      return p.status === filter;
+    });
+}
+
+function art(p) {
+  if (p.image) return `<img src="${p.image}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`;
+  const [a, b, c] = p.colors;
+  const faces = {
+    cage: `<rect x="150" y="70" width="90" height="120" rx="40" fill="none" stroke="#222" stroke-width="6"/>
+      <line x1="160" y1="100" x2="230" y2="100" stroke="#222" stroke-width="4"/>
+      <line x1="160" y1="130" x2="230" y2="130" stroke="#222" stroke-width="4"/>
+      <circle cx="195" cy="118" r="22" fill="#f6e2b0"/>
+      <circle cx="188" cy="114" r="3" fill="#111"/><circle cx="204" cy="114" r="3" fill="#111"/>
+      <circle cx="230" cy="150" r="10" fill="#f2c14e"/>`,
+    crown: `<path d="M120 150 L140 90 L170 130 L195 70 L220 130 L250 90 L270 150 Z" fill="#c9a227"/>
+      <circle cx="195" cy="175" r="48" fill="#f0c9a0"/>
+      <rect x="145" y="210" width="100" height="80" fill="#5c3b2e"/>
+      <circle cx="180" cy="170" r="4" fill="#111"/><circle cx="210" cy="170" r="4" fill="#111"/>`,
+    rat: `<ellipse cx="200" cy="180" rx="70" ry="50" fill="#c4b6a6"/>
+      <ellipse cx="130" cy="150" rx="22" ry="30" fill="#c4b6a6"/>
+      <ellipse cx="270" cy="150" rx="22" ry="30" fill="#c4b6a6"/>
+      <circle cx="175" cy="175" r="5" fill="#111"/><circle cx="225" cy="175" r="5" fill="#111"/>
+      <ellipse cx="200" cy="195" rx="10" ry="7" fill="#ff8fa3"/>
+      <path d="M200 202 q-20 40 -10 70" stroke="#c4b6a6" stroke-width="8" fill="none"/>`,
+    vest: `<circle cx="190" cy="130" r="40" fill="#f0c9a0"/>
+      <rect x="140" y="175" width="110" height="120" rx="10" fill="#ff7347"/>
+      <rect x="175" y="175" width="30" height="120" fill="#f6f0e6"/>
+      <circle cx="176" cy="124" r="4" fill="#111"/><circle cx="206" cy="124" r="4" fill="#111"/>
+      <path d="M178 142 q12 8 24 0" stroke="#111" stroke-width="3" fill="none"/>`,
+    ape: `<circle cx="190" cy="160" r="70" fill="#6b4f3a"/>
+      <ellipse cx="120" cy="170" rx="24" ry="34" fill="#6b4f3a"/>
+      <ellipse cx="260" cy="170" rx="24" ry="34" fill="#6b4f3a"/>
+      <ellipse cx="190" cy="180" rx="36" ry="28" fill="#e7c8a4"/>
+      <circle cx="168" cy="150" r="6" fill="#111"/><circle cx="214" cy="150" r="6" fill="#111"/>
+      <ellipse cx="190" cy="176" rx="10" ry="7" fill="#111"/>`,
+    bird: `<ellipse cx="190" cy="170" rx="55" ry="45" fill="#d9d3c7"/>
+      <circle cx="165" cy="155" r="6" fill="#111"/>
+      <path d="M190 170 L240 160 L190 186 Z" fill="#ff7347"/>
+      <path d="M150 120 q20 -40 50 -10" stroke="#d9d3c7" stroke-width="8" fill="none"/>
+      <rect x="155" y="145" width="36" height="10" rx="4" fill="#111" opacity=".8"/>`,
+    oracle: `<path d="M130 120 Q190 40 250 120 L230 260 L150 260 Z" fill="#2a1238"/>
+      <circle cx="190" cy="175" r="42" fill="#f0c9a0"/>
+      <circle cx="190" cy="175" r="16" fill="#b388ff"/>
+      <circle cx="190" cy="175" r="6" fill="#111"/>
+      <path d="M150 250 L190 300 L230 250" fill="#f6f0e6"/>`,
+    skull: `<circle cx="190" cy="150" r="62" fill="#f6f0e6"/>
+      <ellipse cx="166" cy="145" rx="16" ry="18" fill="#111"/>
+      <ellipse cx="214" cy="145" rx="16" ry="18" fill="#111"/>
+      <path d="M175 185 h10 v16 h-10z M190 185 h10 v16 h-10z M205 185 h10 v16 h-10z" fill="#111"/>
+      <path d="M160 210 Q190 250 220 210" stroke="#111" stroke-width="6" fill="none"/>`
+  };
+  const face = faces[p.kind] || faces.vest;
+  return `<svg viewBox="0 0 380 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="380" height="340" fill="${a}"/>
+    <circle cx="300" cy="60" r="70" fill="${b}" opacity=".9"/>
+    <rect x="0" y="250" width="380" height="90" fill="${c}" opacity=".25"/>
+    ${face}
+  </svg>`;
+}
+
+function cardHtml(p, cls) {
+  const chip = p.status === "live" ? "live" : "upcoming";
+  const label = p.status === "live" ? "LIVE" : "UPCOMING";
+  const riskWord = p.risk === "green" ? "GREEN" : p.risk === "red" ? "RED" : "YELLOW";
+  return `<article class="card ${cls} risk-${p.risk}" data-id="${p.id}">
+    <div class="art">${art(p)}<span class="chip ${chip}">${label}</span></div>
+    <div class="body">
+      <h3>${p.name}</h3>
+      <div class="meta">${p.founder} \u00b7 ${p.followers} followers</div><div class="meta">${p.chain} \u00b7 ${p.supply} \u00b7 ${p.price}</div><div class="meta">${p.when}</div>
+      <div class="wallet ${p.risk}"><b>${riskWord}</b> \u00b7 ${p.wallet ? short(p.wallet) : "No payout wallet"} \u00b7 ${p.walletNote}</div>
+      <div class="counts">${fmt(stats[p.id].views)} views \u00b7 ${fmt(stats[p.id].likes)} likes \u00b7 ${fmt(stats[p.id].dislikes)} dislikes</div>
+      <p class="blurb">${p.blurb}</p>
+      <div class="socials">${(p.socials||[]).map(s => `<a href="${s.href}" target="_blank" rel="noopener">${s.label}</a>`).join("")}</div>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const items = visible();
+  if (items[0] && items[0].id !== lastViewed) {
+    stats[items[0].id].views += 1;
+    lastViewed = items[0].id;
+  }
+  const stack = document.getElementById("stack");
+  const board = document.getElementById("board");
+  if (!items.length) {
+    stack.innerHTML = `<div class="empty"><div><div class="note">Nothing in this pile</div><button type="button" id="reset">Start over</button></div></div>`;
+    document.getElementById("reset").onclick = () => { order = PROJECTS.map(p => p.id); render(); };
+  } else {
+    const top = items.slice(0, 3);
+    stack.innerHTML = top.map((p, i) => cardHtml(p, i === 0 ? "front" : i === 1 ? "back-1" : "back-2")).reverse().join("");
+    bindDrag();
+  }
+  document.getElementById("save").setAttribute("aria-pressed", items[0] && saved.has(items[0].id) ? "true" : "false");
+
+  const groups = [
+    ["Upcoming", items.filter(p => p.status === "upcoming")],
+    ["Live", items.filter(p => p.status === "live")]
+  ];
+  if (filter === "saved") {
+    board.innerHTML = `<div class="col" style="grid-column:1/-1"><h4>Saved</h4><div class="grid">${items.map(tile).join("") || "<p>None saved yet.</p>"}</div></div>`;
+  } else if (filter === "upcoming" || filter === "live") {
+    const only = filter === "live" ? groups[1] : groups[0];
+    board.innerHTML = `<div class="col" style="grid-column:1/-1"><h4>${only[0]}</h4><div class="grid">${only[1].map(tile).join("")}</div></div>`;
+  } else {
+    board.innerHTML = groups.map(([title, list]) => `<div class="col"><h4>${title}</h4><div class="grid">${list.map(tile).join("")}</div></div>`).join("");
+  }
+}
+
+function tile(p) {
+  const chip = p.status === "live" ? "live" : "upcoming";
+  const label = p.status === "live" ? "LIVE" : "UPCOMING";
+  return `<article class="tile"><div class="art">${art(p)}<span class="chip ${chip}">${label}</span></div><div class="body"><h3>${p.name}</h3><div class="meta">${p.supply} \u00b7 ${p.price}</div></div></article>`;
+}
+
+function advance(id) {
+  order = order.filter(x => x !== id).concat(id);
+  lastViewed = null;
+  render();
+}
+function voteMessage(projectId, kind) {
+  return "Prixville vote\nProject: " + projectId + "\nVote: " + kind;
+}
+function showUnsaved() {
+  const el = document.getElementById("unsaved");
+  el.hidden = false;
+  el.textContent = "Vote not saved. A downloaded file cannot see other wallets.";
+}
+function showCardError(text) {
+  const front = document.querySelector(".card.front");
+  if (!front) return;
+  front.style.transform = "";
+  let note = front.querySelector(".vote-note");
+  if (!note) {
+    note = document.createElement("div");
+    note.className = "vote-note";
+    const body = front.querySelector(".body");
+    const counts = front.querySelector(".counts");
+    if (counts && counts.nextSibling) body.insertBefore(note, counts.nextSibling);
+    else body.appendChild(note);
+  }
+  note.textContent = text;
+}
+function countLocal(kind, id) {
+  if (kind === "like") {
+    stats[id].likes += 1;
+    saved.add(id);
+    burst("like");
+  } else {
+    stats[id].dislikes += 1;
+    burst("dislike");
+  }
+  advance(id);
+}
+let voting = false;
+async function postVote(projectId, kind) {
+  if (!window.ethereum) throw new Error("Connect a wallet to vote");
+  const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+  const address = accounts && accounts[0];
+  if (!address) throw new Error("Connect a wallet to vote");
+  const message = voteMessage(projectId, kind);
+  let signature;
+  try {
+    signature = await window.ethereum.request({ method: "personal_sign", params: [message, address] });
+  } catch (e) {
+    throw new Error("Signature rejected");
+  }
+  let res;
+  try {
+    res = await fetch("/api/vote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address: address, project_id: projectId, direction: kind, message: message, signature: signature })
+    });
+  } catch (e) {
+    return { notSaved: true };
+  }
+  let data = {};
+  try { data = await res.json(); } catch (e) { data = {}; }
+  if (!res.ok) throw new Error(data.error || "Vote rejected");
+  return data;
+}
+async function vote(kind) {
+  if (voting) return;
+  const items = visible();
+  if (!items.length) return;
+  const id = items[0].id;
+  if (location.protocol === "file:") {
+    countLocal(kind, id);
+    showUnsaved();
+    return;
+  }
+  voting = true;
+  try {
+    const result = await postVote(id, kind);
+    if (result.notSaved) {
+      countLocal(kind, id);
+      showUnsaved();
+      return;
+    }
+    stats[id].likes = result.likes;
+    stats[id].dislikes = result.dislikes;
+    if (kind === "like") {
+      saved.add(id);
+      burst("like");
+    } else {
+      burst("dislike");
+    }
+    advance(id);
+  } catch (err) {
+    showCardError(err && err.message ? err.message : "Vote rejected");
+  } finally {
+    voting = false;
+  }
+}
+function pass() { vote("dislike"); }
+function like() { vote("like"); }
+
+function bindDrag() {
+  const front = document.querySelector(".card.front");
+  if (!front) return;
+  front.addEventListener("pointerdown", (e) => {
+    drag = { x: e.clientX, y: e.clientY, el: front, moved: false };
+    front.setPointerCapture(e.pointerId);
+  });
+  front.addEventListener("pointermove", (e) => {
+    if (!drag || drag.el !== front) return;
+    const dx = e.clientX - drag.x;
+    const dy = e.clientY - drag.y;
+    if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+    drag.moved = true;
+    front.style.transform = `translate(${dx}px, ${dy * 0.12}px) rotate(${dx / 22}deg)`;
+  });
+  const end = (e) => {
+    if (!drag || drag.el !== front) return;
+    const dx = e.clientX - drag.x;
+    const moved = drag.moved;
+    drag = null;
+    if (!moved || Math.abs(dx) < 70) {
+      front.style.transform = "";
+      return;
+    }
+    if (dx > 0) like();
+    else pass();
+  };
+  front.addEventListener("pointerup", end);
+  front.addEventListener("pointercancel", () => { drag = null; front.style.transform = ""; });
+  front.addEventListener("click", (e) => {
+    if (e.target.closest("a") && front.style.transform) e.preventDefault();
+  });
+}
+
+document.getElementById("pass").onclick = pass;
+document.getElementById("next").onclick = pass;
+document.getElementById("save").onclick = like;
+document.getElementById("info").onclick = () => {
+  document.getElementById("layout").click();
+};
+document.querySelectorAll("[data-filter]").forEach(btn => {
+  btn.onclick = () => {
+    filter = btn.dataset.filter;
+    document.querySelectorAll("[data-filter]").forEach(b => b.setAttribute("aria-pressed", b === btn ? "true" : "false"));
+    render();
+  };
+});
+document.getElementById("layout").onclick = () => {
+  const boardOn = document.getElementById("board").classList.toggle("show");
+  document.getElementById("stage").classList.toggle("hide", boardOn);
+  document.getElementById("layout").setAttribute("aria-pressed", boardOn ? "true" : "false");
+  document.getElementById("layout").textContent = boardOn ? "Stack" : "Board";
+};
+document.getElementById("jumpRichards").onclick = () => {
+  filter = "upcoming";
+  document.querySelectorAll("[data-filter]").forEach(b => b.setAttribute("aria-pressed", b.dataset.filter === "upcoming" ? "true" : "false"));
+  order = PROJECTS.map(p => p.id);
+  if (document.getElementById("board").classList.contains("show")) document.getElementById("layout").click();
+  render();
+};
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") pass();
+  if (e.key === "ArrowRight") like();
+});
+async function loadCounts() {
+  if (location.protocol === "file:") return;
+  try {
+    const res = await fetch("/api/counts");
+    if (!res.ok) return;
+    const data = await res.json();
+    PROJECTS.forEach(p => {
+      if (!data[p.id]) return;
+      stats[p.id].likes = data[p.id].likes || 0;
+      stats[p.id].dislikes = data[p.id].dislikes || 0;
+    });
+    render();
+  } catch (e) {}
+}
+render();
+loadCounts();
+</script>
+</body>
 </html>
