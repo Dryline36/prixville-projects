@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+votes.sqlite3
+votes.sqlite3-journal
+votes.sqlite3-wal
+votes.sqlite3-shm
