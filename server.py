@@ -47,6 +47,24 @@ VOTE_LOCK = threading.Lock()
 CHECK_ERROR = "could not check related wallets"
 TIED_ERROR = "tied to a wallet that already voted"
 BAD_SIGNATURE = "bad signature"
+HOLD_ERROR = "This wallet does not hold a Prixville ticket, Prixville NFT, or a Richards"
+HOLD_CHECK_ERROR = "could not check Prixville holdings"
+
+# ERC-721 balanceOf(address). Addresses checked against a public page, not guessed.
+# Prixville Ticket: Etherscan token tracker and Blockscout name "Prixville Ticket" (prixxxxx).
+# Prixville NFT: OpenSea collection "prixville" (linked from prixville.com); on-chain name "Prix".
+# The Richards: OpenSea collection "the-richardss" (project URL prixville.com); Blockscout name "The Richards".
+HOLDING_CONTRACTS = (
+    "0x391c31b74fb6824ed22a59ee325c0ecaf3bbdcc8",
+    "0x22115e975da96f3e3eb33771869d387773bd286c",
+    "0xf054daf83ec676d9a1e85ce9d1a6d5a65e8e75c1",
+)
+ETH_RPCS = (
+    "https://ethereum-rpc.publicnode.com",
+    "https://eth.llamarpc.com",
+    "https://cloudflare-eth.com",
+)
+BALANCE_OF_SELECTOR = "70a08231"
 
 
 def vote_message(project_id, direction):
@@ -182,6 +200,64 @@ def related_addresses(voter):
     return related
 
 
+
+class HoldingsCheckError(Exception):
+    """A public Ethereum RPC did not return a usable balanceOf result."""
+
+
+def erc721_balance(contract, owner):
+    data = "0x" + BALANCE_OF_SELECTOR + owner[2:].rjust(64, "0")
+    payload = json.dumps(
+        {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "eth_call",
+            "params": [{"to": contract, "data": data}, "latest"],
+        }
+    ).encode("utf-8")
+    last_error = None
+    for rpc in ETH_RPCS:
+        request = urllib.request.Request(
+            rpc,
+            data=payload,
+            headers={
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": "prixville-vote/1.0",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=15) as response:
+                if getattr(response, "status", 200) != 200:
+                    last_error = response.status
+                    continue
+                body = json.loads(response.read().decode("utf-8"))
+        except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError, UnicodeDecodeError) as exc:
+            last_error = exc
+            continue
+        if not isinstance(body, dict) or body.get("error") or "result" not in body:
+            last_error = body
+            continue
+        result = body["result"]
+        if not isinstance(result, str) or not result.startswith("0x") or len(result) < 3:
+            last_error = result
+            continue
+        try:
+            return int(result, 16)
+        except ValueError as exc:
+            last_error = exc
+            continue
+    raise HoldingsCheckError(HOLD_CHECK_ERROR) from (last_error if isinstance(last_error, Exception) else None)
+
+
+def holds_prixville_nft(voter):
+    """True if balanceOf is at least 1 on any verified Prixville ERC-721."""
+    for contract in HOLDING_CONTRACTS:
+        if erc721_balance(contract, voter) > 0:
+            return True
+    return False
+
+
 def recover_signer(message, signature):
     if not isinstance(signature, str) or not signature.startswith("0x"):
         raise ValueError(BAD_SIGNATURE)
@@ -237,6 +313,11 @@ def cast_vote(conn, address, project_id, direction, signature):
         ).fetchone()
         if already:
             return 409, {"error": "this wallet already voted on this project"}
+        try:
+            if not holds_prixville_nft(voter):
+                return 403, {"error": HOLD_ERROR}
+        except HoldingsCheckError:
+            return 503, {"error": HOLD_CHECK_ERROR}
         try:
             linked = related_addresses(voter)
         except RelatedWalletCheckError:
