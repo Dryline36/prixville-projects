@@ -2,7 +2,7 @@
 
 This repo is the Prixville phone swipe feed: one HTML page of upcoming and live NFT projects. Drag a card right to like it and left to dislike it. A short tap still opens the social links. Likes play a water splash, a squish sound, and a vibration when the phone allows it. Dislikes show a big red X and play a loud buzz. Audio stays silent until the first tap. Each card shows view, like, and dislike counts, the Prixville type (Rokkitt, Crimson Text, JetBrains Mono), and the wallet color already stored for that project (green, yellow, or red).
 
-The page lists the seven projects that were already in the file. It does not add projects, prices, wallets, follower counts, or X posts.
+The page lists nine projects for the week of Oct 12, 2026 (ChronoLab II, Auditors, Lunar Flock, ScatterForm, Horseplay, The Hoodiens, Teddy London, MOTIF, Failed Prezzies). Weekly rebuilds refresh the pile from public mint calendars; unpublished fields stay blank.
 
 ## Run the server
 
@@ -46,3 +46,4 @@ A vote counts only if that wallet currently holds at least one token from a coll
 The server calls ERC-721 `balanceOf` on each of those contracts through a public Ethereum RPC. If the balance is at least 1 on any of them, the holding check passes. If every balance is 0, the vote is rejected with "This wallet does not hold a Prixville ticket, Prixville NFT, or a Richards" and is not counted. If the RPC does not return a balance, the vote is rejected with "could not check Prixville holdings" and is not counted. The one-vote-per-address rule and the affiliated-wallet rejection still apply after that.
 
 prixville.com also links to https://opensea.io/collection/pville (titled P'ville Ticket on OpenSea, supply 100). That page's HTML did not include a contract address, and the OpenSea API for that slug returned unauthorized, so no separate address for the pville slug is used. It is not assumed to be the ticket contract above.
+
