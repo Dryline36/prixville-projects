@@ -3,6 +3,7 @@
 
 import json
 import os
+import re
 import sqlite3
 import threading
 import urllib.error
@@ -19,16 +20,24 @@ INDEX = ROOT / "index.html"
 HOST = os.environ.get("PRIXVILLE_HOST", "127.0.0.1")
 PORT = int(os.environ.get("PRIXVILLE_PORT", "8000"))
 
-# The seven projects already in index.html. Unknown ids are rejected.
-PROJECT_IDS = (
-    "chronolab",
-    "accretion",
-    "hoodiens",
-    "teddy",
-    "motif",
-    "prezzies",
-    "loopers",
-)
+# Project ids come from the PROJECTS array in index.html, so the weekly
+# rebuild cannot drift from the server. Unknown ids are rejected.
+PROJECT_ID_PATTERN = re.compile(r'\{\s*id:\s*"([a-z0-9_-]+)"')
+
+
+def load_project_ids(index_path=INDEX):
+    text = index_path.read_text(encoding="utf-8")
+    start = text.find("const PROJECTS = [")
+    end = text.find("\n];", start)
+    if start < 0 or end < 0:
+        raise SystemExit("index.html has no PROJECTS array")
+    ids = tuple(dict.fromkeys(PROJECT_ID_PATTERN.findall(text[start:end])))
+    if not ids:
+        raise SystemExit("index.html PROJECTS array has no ids")
+    return ids
+
+
+PROJECT_IDS = load_project_ids()
 
 EXPLORERS = (
     "https://eth.blockscout.com/api/v2",
@@ -46,6 +55,9 @@ HISTORY_PATHS = (
 VOTE_LOCK = threading.Lock()
 CHECK_ERROR = "could not check related wallets"
 TIED_ERROR = "tied to a wallet that already voted"
+ENS_CHECK_ERROR = "could not check ENS name"
+ENS_TIED_ERROR = "shares an ENS name with a wallet that already voted"
+ENS_EXPLORER = "https://eth.blockscout.com/api/v2"
 BAD_SIGNATURE = "bad signature"
 HOLD_ERROR = "This wallet does not hold a Prixville ticket, Prixville NFT, or a Richards"
 HOLD_CHECK_ERROR = "could not check Prixville holdings"
@@ -86,6 +98,10 @@ def connect():
         )
         """
     )
+    columns = {row[1] for row in conn.execute("PRAGMA table_info(votes)")}
+    if "ens" not in columns:
+        conn.execute("ALTER TABLE votes ADD COLUMN ens TEXT")
+    conn.execute("CREATE INDEX IF NOT EXISTS votes_project_ens ON votes (project_id, ens)")
     conn.commit()
     return conn
 
@@ -199,6 +215,42 @@ def related_addresses(voter):
     related.discard(voter)
     return related
 
+
+
+class EnsCheckError(Exception):
+    """Blockscout did not give a usable answer about this wallet's ENS name."""
+
+
+def ens_name(voter):
+    """Primary ENS name Blockscout shows for this wallet, lowercased, or None.
+
+    A 404 means Blockscout has never seen the address, so it has no name.
+    Any other failure raises, and the vote must not count.
+    """
+    request = urllib.request.Request(
+        f"{ENS_EXPLORER}/addresses/{voter}",
+        headers={"Accept": "application/json", "User-Agent": "prixville-vote/1.0"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            if getattr(response, "status", 200) != 200:
+                raise EnsCheckError(ENS_CHECK_ERROR)
+            data = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            return None
+        raise EnsCheckError(ENS_CHECK_ERROR) from exc
+    except (urllib.error.URLError, TimeoutError, OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise EnsCheckError(ENS_CHECK_ERROR) from exc
+    if not isinstance(data, dict) or "ens_domain_name" not in data:
+        raise EnsCheckError(ENS_CHECK_ERROR)
+    name = data.get("ens_domain_name")
+    if name is None:
+        return None
+    if not isinstance(name, str):
+        raise EnsCheckError(ENS_CHECK_ERROR)
+    name = name.strip().lower()
+    return name or None
 
 
 class HoldingsCheckError(Exception):
@@ -331,9 +383,20 @@ def cast_vote(conn, address, project_id, direction, signature):
             if hit:
                 return 409, {"error": TIED_ERROR}
         try:
+            ens = ens_name(voter)
+        except EnsCheckError:
+            return 503, {"error": ENS_CHECK_ERROR}
+        if ens:
+            hit = conn.execute(
+                "SELECT 1 FROM votes WHERE project_id = ? AND ens = ? LIMIT 1",
+                (project_id, ens),
+            ).fetchone()
+            if hit:
+                return 409, {"error": ENS_TIED_ERROR}
+        try:
             conn.execute(
-                "INSERT INTO votes (address, project_id, direction) VALUES (?, ?, ?)",
-                (voter, project_id, direction),
+                "INSERT INTO votes (address, project_id, direction, ens) VALUES (?, ?, ?, ?)",
+                (voter, project_id, direction, ens),
             )
             conn.commit()
         except sqlite3.IntegrityError:

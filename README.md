@@ -2,7 +2,9 @@
 
 This repo is the Prixville phone swipe feed: one HTML page of upcoming and live NFT projects. Drag a card right to like it and left to dislike it. A short tap still opens the social links. Likes play a water splash, a squish sound, and a vibration when the phone allows it. Dislikes show a big red X and play a loud buzz. Audio stays silent until the first tap. Each card shows view, like, and dislike counts, the Prixville type (Rokkitt, Crimson Text, JetBrains Mono), and the wallet color already stored for that project (green, yellow, or red).
 
-The page lists nine projects for the week of Oct 12, 2026 (ChronoLab II, Auditors, Lunar Flock, ScatterForm, Horseplay, The Hoodiens, Teddy London, MOTIF, Failed Prezzies). Weekly rebuilds refresh the pile from public mint calendars; unpublished fields stay blank.
+The page lists 54 projects for the week of Nov 9, 2026 (Ethereum: NORKS, Cyborg Swines, Pixelated Harvest, DISTORTFACE, People of the Sky, ROOT HOOD, Founders, Replica, Hashed Skulls World, Primate Legends, All In Society, Graffolk, Earthly Appetites, Nevermore Manor, Flying Femme Fatale, Pumpkin Spice, Drum Circle, Fright Night, Horseplay, Morning Glory, No More Heroes, The Odyssey: Eye Candy II, NFTKEK Pass, Mr.Punks, Rich Van Gogh, LUOMS, MUNOS, Model Citizens, The Flowers of the Screen, Seamless, COSMIC TRANSMISSIONS, Abyss Evolution, TREE OF COMMANDMENTS, Hardware && Hardware, JPEGZ, Dice Club, NVDR Genesis Player Pack, CC0PE HARDER, Seis Siete, Webber v2, We Know You Answered., MicroFrens, Asperites, ALPARA NFT CLUB, Everyman, PROTOCOL 0: NO SIGNAL, BRO IS A FREAK, Nocturnal; Base: Naming Monsters, Raving Apes, Jack's Crew, Lunar Flock, Failed Prezzies, The Holy Trinity (Collectr)). Weekly rebuilds refresh the pile from public mint calendars (NFT Trencher, NFTCalendar, FloorFeed, OpenSea drop pages); unpublished fields say "Not published".
+
+The server reads the project ids from the `PROJECTS` array in `index.html` at startup, so a rebuilt page and the vote API always agree on which projects exist.
 
 ## Run the server
 
@@ -36,6 +38,8 @@ or `Vote: dislike`. The server checks that signature and rejects a bad one.
 One vote per lowercase address per project. A second vote from the same address is rejected.
 
 Before accepting a vote, the server looks up public transaction history for that address on Ethereum (https://eth.blockscout.com/api/v2) and Base (https://base.blockscout.com/api/v2). It reads only the first page of results those APIs actually return: normal transactions (the newest page and the oldest page), internal transactions, and token transfers. It treats the address as the same person as any address it has sent to or received from on those pages, and as the address that first funded it when that incoming transfer appears on the oldest page. If any of those addresses already voted on that same project, the vote is rejected and the server says it is tied to a wallet that already voted. If the API fails, the server does not pretend it checked: it rejects the vote with "could not check related wallets" and does not count it. There is no private blacklist, and the server does not invent links between wallets.
+
+The server also reads the wallet's primary ENS name from Blockscout (https://eth.blockscout.com/api/v2/addresses/<address>, field `ens_domain_name`) and stores it with the vote. If another wallet that already voted on the same project has the same ENS name, the vote is rejected as sharing an ENS name with a wallet that already voted. A 404 from Blockscout means the address has no record and no name. Any other failure rejects the vote with "could not check ENS name".
 
 A vote counts only if that wallet currently holds at least one token from a collection whose contract was checked on a public page:
 
